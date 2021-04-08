@@ -8,9 +8,9 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
                 <i className="fa fa-bars"></i>
             </div>
             <div className="navbar__left">
-                <a className="active_link" href="/main">Admin</a>
-                <a href="/addInsulator">Add Insulator</a>
-                <a href="#">Log Out</a>
+                <a className={`${window.location.pathname === "/main" ? 'active_link' : ''}`} href="/main">Admin</a>
+                <a className={`${window.location.pathname === "/addInsulator" ? 'active_link' : ''}`} href="/addInsulator">Add Insulator</a>
+                <a href="/">Log Out</a>
             </div>
             <div className="navbar__right">
                 <a href="#">
