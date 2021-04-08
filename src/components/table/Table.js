@@ -5,30 +5,12 @@ import Datatable from "./Datatable.js";
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
 
- export default function Table() {
-     const [data, setData] = useState([]);
-     const [q, setQ] = useState("");
+ export default function Table({ data, search }) {
+    const [q, setQ] = useState("");
 
-     useEffect(() => {
-            fetch("https://dc7dcc1d-56f6-477e-8ed5-2e4171628047.mock.pstmn.io/users")
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                return setData(json);
-            });
-     },[]);
-
-     const columns = data[0] && Object.keys(data[0]); 
-
-     function search(rows) {
-         const columns = rows[0] && Object.keys(rows[0]);
-         return rows.filter((row) =>
-         columns.some(
-             (column) => row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-            )
-         );
-     }
+    useEffect(() => {
+        search(q)
+    }, [q])
 
      return (
             <div>
@@ -36,7 +18,7 @@ require("isomorphic-fetch");
                     <input type="text" value={q} onChange={(e) => setQ(e.target.value)} />
                 </div>
                 <div>
-                    <Datatable data={search(data)} />
+                    <Datatable data={data} />
                 </div>
             </div>
 

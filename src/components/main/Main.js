@@ -5,8 +5,54 @@ import LineChart from "../charts/LineChart";
 import PieChart from "../charts/PieChart";
 import Table from "../table/Table";
 import "leaflet/dist/leaflet.css";
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Main = () => {
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+
+    const [startDate, setStartDate] = useState(new Date());
+
+    const insulatorsFromDate = () => {
+        if (startDate) {
+            setFilteredData(data.filter(date => new Date(date.isolated_start_day).getTime() >= startDate.getTime()))
+        }
+    }
+
+    const graduatesInsulatorsFromDate = () => {
+        if (startDate) {
+            setFilteredData(data.filter(date => new Date(date.isolated_end_day).getTime() <= startDate.getTime()))
+        }
+    }
+    
+    const search = (q) => {
+        const columns = data[0] && Object.keys(data[0]);
+
+        setFilteredData(
+            data.filter((row) =>
+                {
+                    return columns.some(
+                        (column) => row[column] && row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+                    );
+                }
+            )
+        )
+    }
+
+    useEffect(() => {
+      fetch("https://dc7dcc1d-56f6-477e-8ed5-2e4171628047.mock.pstmn.io/users")
+        .then((response) => {
+            return response.json();
+        })
+        .then((json) => {
+            setData(json);
+            setFilteredData(json.map(x => x)); // Shallow clone
+        });
+    },[]);
+
     return(
         <main>
             <div className="main__container">
@@ -105,11 +151,33 @@ const Main = () => {
                     
                 </div>
 
-                <MyMap />
-                {/* <NewMap /> */}
-                <Table />
+                <MyMap data={filteredData} />
+             
+                <Table data={filteredData} search={search} />
+                
+            <div className="charts">
+                <div className="charts__left">
+                    <div className="charts__left__title">
+                        <div>
+                        <h1>Filter all insulators from a specific date</h1>
+                        <DatePicker selected={startDate} onChange={startDate => setStartDate(startDate)} />
+                        <Button variant="secondary" onClick={insulatorsFromDate}>Filter</Button>
+                        </div>
+                    </div>
+                </div>      
+                <div className="charts__right">
+                    <div className="charts__right__title">
+                        <div>
+                        <h1>Filter all insulators that have completed insulation by a certain date</h1>
+                        <DatePicker selected={startDate} onChange={startDate => setStartDate(startDate)} />
+                        <Button variant="secondary" onClick={graduatesInsulatorsFromDate}>Filter</Button>
+                        </div>
+                    </div>
+                </div> 
+                <Button variant="secondary" onClick={() => setFilteredData(data)}>Reset</Button>
             </div>
-        </main>
+        </div>
+    </main>
     )
 }
 
