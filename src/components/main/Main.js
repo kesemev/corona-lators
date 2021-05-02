@@ -106,7 +106,7 @@ const Main = () => {
                         <div className="charts__left__title">
                             <div>
                                 <h1>Health Status</h1>
-                                <p>Israel, Ashdod</p>
+                                <p>Italy</p>
                             </div>
                             <i className="fa fa-thermometer-empty"></i>
                         </div>
@@ -124,13 +124,13 @@ const Main = () => {
 
                         <div className="charts__right__cards">
                             <div className="card1">
-                                <h1>Collaborators</h1>
-                                <p>1538</p>
+                                <h1>Incorrect locations</h1>
+                                <p>25</p>
                             </div>
 
                             <div className="card2">
-                                <h1>Incorrect locations</h1>
-                                <p>25</p>
+                                <h1>Collaborators</h1>
+                                <p>1538</p>
                             </div>
 
                             <div className="card3">
@@ -148,34 +148,31 @@ const Main = () => {
                     <div className="charts__left">
                         <PieChart />
                     </div>
-                    
+
+                    <div className="charts__right">
+                        <div className="charts__left__title">
+                            <div>
+                            <h1>Filter all insulators from a specific date</h1>
+                            <DatePicker selected={startDate} onChange={startDate => setStartDate(startDate)} />
+                            <Button variant="secondary" onClick={insulatorsFromDate}>Filter</Button>
+                            <Button variant="secondary" onClick={() => setFilteredData(data)}>Reset</Button>
+                            </div>
+                        </div>
+                        <div className="charts__left__title">
+                            <div>
+                            <h1>Filter all insulators that have completed insulation by a certain date</h1>
+                            <DatePicker selected={startDate} onChange={startDate => setStartDate(startDate)} />
+                            <Button variant="secondary" onClick={graduatesInsulatorsFromDate}>Filter</Button>
+                            <Button variant="secondary" onClick={() => setFilteredData(data)}>Reset</Button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <MyMap data={filteredData} />
              
                 <Table data={filteredData} search={search} />
                 
-            <div className="charts">
-                <div className="charts__left">
-                    <div className="charts__left__title">
-                        <div>
-                        <h1>Filter all insulators from a specific date</h1>
-                        <DatePicker selected={startDate} onChange={startDate => setStartDate(startDate)} />
-                        <Button variant="secondary" onClick={insulatorsFromDate}>Filter</Button>
-                        </div>
-                    </div>
-                </div>      
-                <div className="charts__right">
-                    <div className="charts__right__title">
-                        <div>
-                        <h1>Filter all insulators that have completed insulation by a certain date</h1>
-                        <DatePicker selected={startDate} onChange={startDate => setStartDate(startDate)} />
-                        <Button variant="secondary" onClick={graduatesInsulatorsFromDate}>Filter</Button>
-                        </div>
-                    </div>
-                </div> 
-                <Button variant="secondary" onClick={() => setFilteredData(data)}>Reset</Button>
-            </div>
         </div>
     </main>
     )

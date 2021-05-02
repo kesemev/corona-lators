@@ -4,10 +4,10 @@ import { RadialChart } from 'react-vis';
 const PieChart = () => {
 
     const data = [
-        {angle: 900 ,label: 'Collaborators',className: 'Collaborators' ,color: '#98FB98'}, 
-        {angle: 25 ,label: 'Incorrect locations',className: 'Incorrect locations' ,color: '#FFA07A'}, 
-        {angle: 79 ,label: 'Incorrect identifications',className: 'Incorrect identifications' ,color: '#F0E68C'},
-        {angle: 264 ,label: 'Uncooperatives',className: 'Uncooperatives' ,color: '#F08080'}
+        {angle: 900 ,label: 'Collaborators',className: 'Collaborators' ,color: '#d2f9ee'}, 
+        {angle: 25 ,label: 'Incorrect locations',className: 'Incorrect locations' ,color: '#f0a71f'}, 
+        {angle: 79 ,label: 'Incorrect identifications',className: 'Incorrect identifications' ,color: '#f1f37d'},
+        {angle: 264 ,label: 'Uncooperatives',className: 'Uncooperatives' ,color: '#f8a0a7'}
     ];
 
     return (
@@ -16,7 +16,7 @@ const PieChart = () => {
                 colorType="literal"
                 className="progress-chart"
                 data={data}
-                width={300}
+                width={680}
                 height={300} 
                 showLabels={true}
                 padAngle={0.04}

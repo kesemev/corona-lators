@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
+import markerIconPng from "./marker-icon.png";
 
-const insolator = new Icon({
-  iconUrl: "/marker-icon.png",
-  iconSize: [25,25]
-});
 
 function MyMap({data}){
 
@@ -22,12 +19,12 @@ function MyMap({data}){
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          {data.map(tsla => (
-            <Marker key = {tsla.id} position={[tsla.latitude, tsla.longitude]} icon={insolator}>
-              <Popup position={[tsla.latitude, tsla.longitude]}>
+          {data.map(data => (
+            <Marker key = {data.id} position={[data.latitude, data.longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}           >
+              <Popup position={[data.latitude, data.longitude]}>
                 <div>
-                  <h2>{"Name: " + tsla.name}</h2>
-                  <p>{"Status: " + tsla.status}</p>
+                  <h2>{"Name: " + data.name}</h2>
+                  <p>{"Status: " + data.status}</p>
                 </div>
               </Popup>
             </Marker>

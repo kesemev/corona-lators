@@ -1,40 +1,5 @@
 import "../../../node_modules/react-vis/dist/style.css";
 import { XYPlot, LineSeries, XAxis, YAxis, ChartLabel, VerticalGridLines, HorizontalGridLines } from 'react-vis';
-
-// const LineChart = () => {
-
-//     const data = [
-//         { x: 0, y: 8},
-//         { x: 1, y: 7},
-//         { x: 2, y: 1},
-//         { x: 3, y: 9},
-//         { x: 4, y: 6},
-//         { x: 5, y: 2},
-//         { x: 6, y: 9},
-//         { x: 7, y: 4},
-//         { x: 8, y: 2},
-//         { x: 9, y: 8},
-//         { x: 10, y: 10}
-//     ];
-
-//     return (
-//         <div style={{ marginTop: '15px' }}>
-//             <XYPlot height={300} width={300}>
-//                 <VerticalGridLines />
-//                 <HorizontalGridLines />
-//                 <XAxis />
-//                 <YAxis />
-//                 <LineSeries data={data} color="red" />
-//                 <LineSeries data={data} color="purple" />
-//                 <LineSeries data={data} color="yellow" />
-//             </XYPlot>
-//         </div>
-//     );
-// };
-
-// export default LineChart;
-
-
 import React from 'react';
 
 export default class Example extends React.Component {
@@ -48,7 +13,7 @@ export default class Example extends React.Component {
       return (
         <div>
 
-          <XYPlot width={300} height={300}>
+          <XYPlot width={700} height={500}>
             <HorizontalGridLines />
             <VerticalGridLines />
             <XAxis />

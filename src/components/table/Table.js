@@ -1,4 +1,4 @@
-import { DivIcon } from 'leaflet';
+
 import React, { useState, useEffect } from 'react';
 import Datatable from "./Datatable.js";
 
